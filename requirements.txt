@@ -9,3 +9,4 @@ pymupdf>=1.26.3
 python-doctr>=1.0.0
 python-dotenv>=1.1.1
 setuptools>=80.9.0
+streamlit>=1.48.0
