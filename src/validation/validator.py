@@ -1,29 +1,7 @@
-from pydantic import BaseModel, EmailStr, ValidationError
-from typing import List, Optional
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
+from src.output_model.output_model import CVSchema, ValidationError
 import re
-
-class EducationItem(BaseModel):
-    degree: str
-    institution: str
-    graduation_year: Optional[str]
-
-class ExperienceItem(BaseModel):
-    job_title: str
-    company_name: str
-    years_worked: Optional[str]
-    description: Optional[str]
-
-class CVSchema(BaseModel):
-    Name: Optional[str]
-    Email: Optional[EmailStr]
-    Phone: Optional[str]
-    Skills: List[str]
-    Education: List[EducationItem]
-    Experience: Optional[List[ExperienceItem]]
-    Certification: Optional[List[str]]
-    Languages: Optional[List[str]]
 
 class ResultValidator:
     def __init__(self, predict_result, cv_text):
@@ -82,11 +60,10 @@ class ResultValidator:
         # Initialize Gemini LLM via LangChain
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.5-flash",
-            temperature=0.3 ,
+            temperature=0.3,
         )
         # Chain the prompt and parser
         chain = prompt | llm
         result = chain.invoke({"raw_cv_text": self.cv_text, "cv_text": self.predict_result})
-        print("LLM Validation Result:", result.content)
         return True if result.content.lower() == "true" else False
     
