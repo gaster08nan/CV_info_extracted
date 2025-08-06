@@ -3,6 +3,16 @@ from src.wokrflow.workflow import Workflow
 from src.validation.validator import ResultValidator
 
 def main():
+    
+    def validate_cv(result):
+        st.subheader("Validate CV")
+        validator = ResultValidator(result["extracted_json"], result["cv_text"])
+        validate_result, message = validator.run_validation()
+        if validate_result:
+            st.success(message)
+        else:
+            st.error(message)
+    
     st.title("CV Extraction Chatbot")
 
     uploaded_file = st.file_uploader("Upload a CV (PDF)", type="pdf")
@@ -22,18 +32,13 @@ def main():
         if result and "extracted_json" in result:
             extracted_data = result["extracted_json"]
             st.json(extracted_data)
-        else:
-            st.warning("No data extracted from the CV.")
-    
-    def validate_cv():
-        st.subheader("Validate CV")
-        validate_result = ResultValidator.run_validation(result)
-        if validate_result:
-            st.success("CV validation completed successfully.")
-        else:
-            st.error("CV validation failed or no data to validate.")
-    
-    st.button("Validate CV", on_click=validate_cv())
+            
+        if st.button("Validate CV"):
+            validate_cv(result)
+                
+    else:
+        st.warning("No data extracted from the CV.")
+
     
 if __name__ == "__main__":
     main()

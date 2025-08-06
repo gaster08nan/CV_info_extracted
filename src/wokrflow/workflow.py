@@ -30,7 +30,7 @@ EXTRACT_PROMPT_TEMPLATE = """
     -- 'years_worked': years worked (e.g., 2 years). If years worked is not mentioned, return None.
     -- 'description': short description of the job (e.g., Developed web applications using Python and JavaScript). If description is not mentioned, return None.
     - Certification: List of certifications. With the format: 'Certification Name (Year)'. If year is not mentioned, return only the certification name.
-    - Languages: Languages the candidate can speak or write. If not mentioned, return the language used in the CV.
+    - Languages: Languages the candidate can speak or write. If not mentioned, return the language used in the CV, always return as a list.
 
     Return ONLY a valid JSON object in the following format:
     {format_instructions}
