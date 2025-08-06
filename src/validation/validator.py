@@ -65,5 +65,6 @@ class ResultValidator:
         # Chain the prompt and parser
         chain = prompt | llm
         result = chain.invoke({"raw_cv_text": self.cv_text, "cv_text": self.predict_result})
+        print("LLM Validation Result:", result.content)
         return True if result.content.lower() == "true" else False
     

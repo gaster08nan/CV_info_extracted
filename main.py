@@ -23,7 +23,6 @@ def main():
         print("Schema Validation:", validator.schema_validation())
         print("Email Validation:", validator.email_validation())
         print("Phone Validation:", validator.phone_validation())
-        print("LLM Validation:", validator.validate_by_llm())
 
 
 if __name__ == "__main__":

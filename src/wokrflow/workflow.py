@@ -84,7 +84,8 @@ class Workflow:
         return json_data
         
     def _read_pdf_node(self, state: CVState) -> CVState:
-        text = pdf_reader.extract_text_from_pdf(state["file_path"])
+        # text = pdf_reader.extract_text_from_pdf(state["file_path"])
+        text=''
         return {**state, "cv_text": text}
     
     def _process_image_node(self, state: CVState) -> CVState:
@@ -98,6 +99,7 @@ class Workflow:
 
     def _should_use_image(self, state: CVState) -> str:
         text = state.get("cv_text", "")
+        print("Using image processor instead")
         return "image_processor" if not text or text.strip() == "" else "extract"
     
     def _map_and_serialize_cv_data(self, state: CVState) -> str:
