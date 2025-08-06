@@ -52,6 +52,3 @@ if __name__ == "__main__":
     model = define_model()
     page_content = ocr_image(pdf_path, model)
     print(page_content)
-    # img_lst = save_pdf_to_image(pdf_path)
-    # page_content = ocr_image(img_lst)
-    # print("\n".join(page_content))
