@@ -14,13 +14,19 @@ OCR model: DocTR
 
 ## Validate result
 
-* **Check valid email and phone numbers:**: Check the format of extracted email and phone numbers information
-* **Validate missing and incorrect infomation:** Using LLM as a Judge to evaluate the results. Point out missing or incorrect information
+* **Check valid email and phone numbers:**: Check the format of extracted email and phone numbers information.
+* **Validate missing and incorrect infomation:** Using LLM as a Judge to evaluate the results. Point out missing or incorrect information.
+
+## Limitation:
+
+* **Inconsistent results:** The model sometimes misses key information when extracting from long text fields such as description.
+* **Lack of basic reasoning:** The model cannot infer basic information to fill in missing fields. For example, if a CV does not mention languages, it should attempt to detect them from the CV content or past projects. Similarly, it should extract relevant skills from projects even if they are not explicitly listed in the Skills field.
 
 ## Further improvements:
 
-* **Better OCR model:** Fine-tune the OCR model for a better results
-* **Batch processing:** Process the PDF in batches to reduces the cost and waiting time
+* **Better OCR model:** Fine-tune the OCR model for a better results.
+* **Batch processing:** Process the PDF in batches to reduces the cost and waiting time.
+* **Adopt Feedback:** Improve the extracted information by using feedbacks from another LLM.
 * **Self-host LLM model (Optional):** Use a self-hosted LLM to gain independence from an LLM provider. This might increase costs or slightly reduce accuracy. However, it provides more clarity and ensures data privacy.
 
 ## Expected Output
