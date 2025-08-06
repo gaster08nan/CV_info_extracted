@@ -68,3 +68,24 @@ class ResultValidator:
         print("LLM Validation Result:", result.content)
         return True if result.content.lower() == "true" else False
     
+    def run_validation(self) -> bool:
+        """
+        Run all validation checks on the extracted CV data.
+        
+        Returns:
+            bool: True if all validations pass, False otherwise.
+        """
+        if not self.schema_validation():
+            print("Schema validation failed")
+            return False
+        if not self.email_validation():
+            print("Email validation failed")
+            return False
+        if not self.phone_validation():
+            print("Phone validation failed")
+            return False
+        if not self.validate_by_llm():
+            print("Validate bt LLM failed")
+            return False
+        
+        return True
